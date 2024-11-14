@@ -1,0 +1,21 @@
+Since all files uses common structure, therefore making a common comments file named instruction.
+Overall overview of major function used
+This provides a overview of major functions used to plot various plots:
+
+1. Coordinate Reference Systems (CRS)  ccrs.PlateCarree(): Used as the projection in Cartopy when working with simple latitude/longitude data (i.e., a Plate Carree projection). Often a good default for regional or global maps where lat/lon coordinates are mapped directly.
+2. Map Extent  ax.set_extent([west, east, south, north], crs=ccrs.PlateCarree()): Sets the displayed region of the map. Useful for focusing on specific areas (e.g., [-125, -67, 25, 50] for the contiguous United States).
+3. Geographic Features  ax.coastlines(): Adds coastlines to the map, helping to frame the geographical area. ax.add_feature(cfeature.BORDERS): Adds country borders to the map, useful for political or regional boundaries.
+4. Raster and Image Plotting  imshow: ax.imshow(data, extent=[lon_min, lon_max, lat_min, lat_max], origin='upper', cmap='BrBG', alpha=0.8, transform=ccrs.PlateCarree()): Used to overlay raster-type data (e.g., drought indices or other gridded data) on the map. Key options include: extent: Specifies the geographic limits. origin: Aligns the data origin (upper or lower). cmap: Sets the colormap, such as 'BrBG' for brown-green to highlight drought severity. alpha: Controls transparency. transform: Ensures data aligns correctly with the map projection.
+5. Contour Plots  contourf: ax.contourf(lon, lat, data, levels=15, cmap='coolwarm', alpha=0.5, transform=ccrs.PlateCarree()): Used for filled contour plots to represent scalar fields like temperature. levels: Sets the number of contour intervals. cmap: Defines color gradients (e.g., 'coolwarm' for temperature). alpha: Controls layer transparency.
+6. Vector Field Plotting  (Wind) quiver: ax.quiver(lon, lat, u, v, transform=ccrs.PlateCarree()): Plots wind direction and speed as arrows. u and v are vector components derived from wind speed and direction. streamplot: ax.streamplot(lon, lat, u, v, color='blue', linewidth=0.5, density=1, transform=ccrs.PlateCarree()): Creates continuous streamlines to represent fluid flow (e.g., wind). color: Sets streamline color. linewidth: Adjusts line thickness. density: Controls streamline density.
+7. Colorbars fig.colorbar(): Adds a color legend, usually necessary to interpret plotted values. Can be tied to each visual layer (e.g., temperature, drought indices) for clarity.
+8. Gridlines ax.gridlines(draw_labels=True, linestyle='--', alpha=0.5, color='gray'): Adds latitude and longitude gridlines, with customization options: draw_labels: Enables axis labels. linestyle: Sets line style (e.g., '--' for dashed). alpha: Adjusts transparency.
+9. Titles and Labels ax.set_title(), ax.set_xlabel(), ax.set_ylabel(): Customize the map title and axis labels to convey additional information.
+10. Saving the Plot  plt.savefig(filename, bbox_inches='tight', dpi=50): Saves the figure with a specific filename and resolution. bbox_inches='tight' ensures the image tightly fits around the content.
+11. Image.open(filename) : Opens an image file and loads it as a Pillow Image object.
+12. imageio.mimsave(output_filename, images, duration=1) : Creates an animated GIF from a list of image arrays. duration sets the time each frame is displayed (in seconds).
+
+
+Point to note:
+
+One can change number of grid bins like longitude, latitude, can change value of scale, colormap, linewidth, density, alpha timestamps as needed, and dpi quality to get quality of image as required.
