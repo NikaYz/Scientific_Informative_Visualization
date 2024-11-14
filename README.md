@@ -61,7 +61,8 @@ The dataset is in **netCDF** format and processed with the `netCDF4` library. Th
 | `/ForestFire/*`                 | Visualizations of wildfire conditions (e.g., Cow and Walker fires).                               |
 | `/Drought`                      | Visualizations of drought conditions, highlighting wind direction and temperature contours.       |
 | `/Hurricane`                    | Hurricane Barry conditions with overlays of precipitation and humidity data.                     |
-| `/Temperature/*`                | Temperature trend visualizations using various colormaps.                                         |
+| `/Temperature/*`                | Temperature trend visualizations using various colormaps.                                        |
+| `Instruction.txt`               | Contains important functions usage for all python codes.                                         |
 
 ---
 
